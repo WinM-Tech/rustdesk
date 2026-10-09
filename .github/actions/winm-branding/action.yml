@@ -1,0 +1,17 @@
+name: Apply WinM branding
+description: Hardcode WinM server, key and app name into hbb_common config
+runs:
+  using: composite
+  steps:
+    - name: Patch hbb_common config
+      shell: bash
+      run: |
+        python3 - <<'EOF'
+        p = 'libs/hbb_common/src/config.rs'
+        s = open(p, encoding='utf-8').read()
+        s = s.replace('RwLock::new("RustDesk".to_owned())', 'RwLock::new("维美远程支持".to_owned())')
+        s = s.replace('["rs-ny.rustdesk.com"]', '["101.42.28.151"]')
+        s = s.replace('OeVuKk5nlHiXp+APNn0Y3pC1Iwpwn44JGqrQCsWqmBw=', 'VNEgIUdLV9emLY3kTOprAXCIiAnV2X7zUML9MYxIj18=')
+        open(p, 'w', encoding='utf-8').write(s)
+        print('patched OK')
+        EOF
