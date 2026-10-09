@@ -138,7 +138,7 @@ jobs:
       - name: Export GitHub Actions cache environment variables
         uses: actions/github-script@d7906e4ad0b1822421a7e6a35d5ca353c962f410 # v6
         with:
-          script: |          sed -i 's/RwLock::new("RustDesk".to_owned())/RwLock::new("维美远程支持".to_owned())/' libs/hbb_common/src/config.rs
+          script: |
             core.exportVariable('ACTIONS_CACHE_URL', process.env.ACTIONS_CACHE_URL || '');
             core.exportVariable('ACTIONS_RUNTIME_TOKEN', process.env.ACTIONS_RUNTIME_TOKEN || '');
 
